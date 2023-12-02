@@ -2,9 +2,6 @@
 import re
 
 def main():
-    maxr = 12
-    maxg = 13
-    maxb = 14
     sum = 0
     # with open("test.txt") as f:
     with open("input.txt") as f:
@@ -12,23 +9,24 @@ def main():
             ok = True
             l = l[:-1].split(":")[1]
             ll = l.split(";")
+            maxr = maxg = maxb = 0
             for m in ll:
                 rr = gg = bb = 0
                 for n in m.split(","):
                     if "red" in n:
                         rr = int(n.strip().split(" ")[0])
                         if rr > maxr:
-                            ok = False
+                            maxr = rr
                     if "green" in n:
                         gg = int(n.strip().split(" ")[0])
                         if gg > maxg:
-                            ok = False
+                            maxg = gg
                     if "blue" in n:
                         bb = int(n.strip().split(" ")[0])
                         if bb > maxb:
-                            ok = False
-            if ok:
-                sum += i + 1
+                            maxb = bb
+            power = maxr * maxg * maxb
+            sum += power
     print(sum)
 
 if __name__ == '__main__':
